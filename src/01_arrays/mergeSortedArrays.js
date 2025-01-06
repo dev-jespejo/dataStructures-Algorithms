@@ -33,11 +33,25 @@ function mergeSortedArrays(arr1, arr2) {
     return mergedArray;
 }
 
+
 function mergeSortedArrays2(arr1, arr2) {
     return [...arr1, ...arr2].sort((a, b) => a - b);
 }
+function mergeSortedArrays3(arr1, arr2) {
+    const mergedArray = [];
+    let i = 0, j = 0;
 
-console.log(mergeSortedArrays2([0,3,4], [4,6,30]));
+    while (i < arr1.length && j < arr2.length) {
+        if (arr1[i] < arr2[j]) {
+            mergedArray.push(arr1[i]);
+            i++;
+        } else {
+            mergedArray.push(arr2[j]);
+            j++;
+        }
+    }
 
+    return mergedArray.concat(arr1.slice(i)).concat(arr2.slice(j));
+}
 
-
+console.log(mergeSortedArrays3([0,3,4], [4,6,30]));
